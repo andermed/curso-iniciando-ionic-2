@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { ionicBootstrap, Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
-
 import { HomePage } from './pages/home/home';
 
 
 @Component({
-  template: '<ion-nav [root]="rootPage"></ion-nav>'
+  templateUrl: 'build/app.html'
 })
 export class MyApp {
-  rootPage: any = HomePage;
+
+  home: any = HomePage;
+
+  rootPage: any = this.home;
 
   constructor(public platform: Platform) {
     platform.ready().then(() => {
@@ -17,6 +19,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
+  }
+
+  openPage(page) {
+    this.rootPage = page;
   }
 }
 
